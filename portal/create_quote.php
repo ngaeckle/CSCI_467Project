@@ -82,7 +82,7 @@ require_once('../validate_session.php');
                 <input class="btn btn-primary" name='Submit' type="submit" value="Submit">
             </div>
         </form>
-        <div>
+		<div>
             <br>
             <a href="Associate_menu.php">Back to Associate Menu</a></br>
         </div>
@@ -93,13 +93,25 @@ require_once('../validate_session.php');
     
     
     <?php
-        if (isset($_POST['Submit'])){
-
+        if (isset($_POST['Submit']) || isset($_POST['Finalized'])){
+			$currentYear = date('Y');
+			$currentMonth = date('m');
+			$currentDay = date('d');
+		
+			$dateCurrent = date('Y-m-d');
+			
+			if(isset($_POST['Submit'])){
+				$status = '(Open)';
+			}
+			else if(isset($_POST['Finalized'])){
+				$status = '(Finalized)';
+			}
     
             /**
              * Grab information from the form submission and store values into variables.
              */
-            $customer = isset($_SESSION['customer_var']) ? $_SESSION['customer_var'] : " ";  
+            $customer = isset($_SESSION['customer_var']) ? $_SESSION['customer_var'] : " "; 
+			$associate = $_SESSION['user'];			
             $address = isset($_POST['address']) ? $_POST['address'] : " ";
             $email = isset($_POST['email']) ? $_POST['email'] : " ";
             $line_item = isset($_POST['line_item']) ? $_POST['line_item'] : " ";
@@ -109,8 +121,8 @@ require_once('../validate_session.php');
             
             //Insert into Quote table;
             
-            $queryQuote  = "INSERT INTO quote (customer, address, email, line_item, line_item_price, secret_note, amount)
-                        VALUES ('".$customer."', '".$address."', '".$email."', '".$line_item."', '".$line_item_price."', '".$secret_note."', '".$amount."');";
+            $queryQuote  = "INSERT INTO quote (event_date, customer, associate, address, email, line_item, line_item_price, secret_note, amount, status)
+                        VALUES ('".$dateCurrent."', '".$customer."', '".$associate."', '".$address."', '".$email."', '".$line_item."', '".$line_item_price."', '".$secret_note."', '".$amount."', '".$status."');";
 
             // The query sent to the DB can be printed by not commenting the following row
             //echo $queryAssociate;
@@ -119,10 +131,7 @@ require_once('../validate_session.php');
             } else {
                 echo "<br> The record was not created, the query: <br>" . $queryQuote . "  <br> Generated the error <br>" . $conn->error;
             }
-
-            // To redirect the page to the Associate menu right after the query is executed, use the following statement 
-            // header("Location: quote_menu.php");
-}
+		}
 ?>
 
 
