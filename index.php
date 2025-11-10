@@ -147,6 +147,9 @@ $total_associates = $associate_result ? $associate_result->fetch_assoc()['total'
           <a href="login.php" class="btn btn-light login-btn">
             <i class="fas fa-sign-in-alt mr-2"></i>Access Portal
           </a>
+			<a href="hq/hq_menu.php" class="btn btn-light login-btn">
+            <i class="fas fa-sign-in-alt mr-2"></i>Headquarters
+          </a>
         </div>
         <div class="col-lg-4 text-center">
           <div class="mt-4">
