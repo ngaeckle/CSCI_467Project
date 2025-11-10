@@ -37,6 +37,19 @@ if (isset($_POST['quote_id'])){
       } else {
         echo "Error updating record: " . mysqli_error($conn);
       }
+	if(isset($_POST['finalize'])){
+	   $query = "UPDATE quote SET status= '(Finalized)' WHERE quote_id = $quote_id";
+	   echo $query;
+	    if (mysqli_query($conn, $query)) {
+        echo "Finalized!";
+			header("Location: view_quote.php");
+      } else {
+        echo "Error updating record: " . mysqli_error($conn);
+      }
+	}
+
+	
+	  
 
 }
 else {
