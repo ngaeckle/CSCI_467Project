@@ -28,6 +28,7 @@
 
         <a href="create_associate.php">Create Associate</a><br>
         <a href="view_associates.php">View, Modify, and Delete Associates</a><br>
+		<a href="view_quotes.php">View, Modify and Delete Quotes</a><br>
 		<a href="logout.php">Logout</a><br>
 
     </div>

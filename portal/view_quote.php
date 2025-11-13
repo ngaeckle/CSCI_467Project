@@ -79,13 +79,13 @@ $result = mysqli_query($conn2, $sql);
                 ?>
                     <tr>
                     <td><?php printf("%s", $row[0]); ?></td>
-                        <td><?php printf("%s", $row[1]); ?></td>
                         <td><?php printf("%s", $row[2]); ?></td>
-                        <td><?php printf("%s", $row[3]); ?></td>
-						<td><?php printf("%s", $row[4]); ?></td>
-						<td><?php printf("%s", $row[5]); ?></td>
+                        <td><?php printf("%s", $row[4]); ?></td>
+                        <td><?php printf("%s", $row[5]); ?></td>
 						<td><?php printf("%s", $row[6]); ?></td>
 						<td><?php printf("%s", $row[7]); ?></td>
+						<td><?php printf("%s", $row[8]); ?></td>
+						<td><?php printf("%s", $row[9]); ?></td>
                         <td><a href="update_quote_interface.php?quote_id=<?php echo $row[0] ?>">Update</a></td>
                         <td><a href="delete_quote.php?quote_id=<?php echo $row[0] ?>">Delete</a></td>
                     </tr>

@@ -27,15 +27,15 @@ require_once('../validate_session.php');
 <body>
 	<?php
     if (isset($_POST['submitButton'])) {
-        $customer = $_POST['myDropdown'];
-
+		$_SESSION['customer_var'] = $_POST['myDropdown'];
         // Further processing with $selectedValue can be done here
-        // e.g., database operations, conditional logic, etc.
-
-    }
+        // e.g., database operations, conditional logic, etc.	
+	}
+	$customer = $_SESSION['customer_var'];
 	$sql = "SELECT city, street, contact FROM customers WHERE name='" .$customer . "';";
 	
 	$result = $conn2->query($sql);
+	
 	
 	while($row = mysqli_fetch_assoc($result)){
 		$city = $row['city'];
@@ -44,6 +44,7 @@ require_once('../validate_session.php');
 	}
 	
 	$address = $city . " " . $street . " " . $contact . " ";
+	$_POST['address'] = $address;
     ?>
 	
     <div style="margin-top: 20px" class="container">
@@ -81,7 +82,7 @@ require_once('../validate_session.php');
                 <input class="btn btn-primary" name='Submit' type="submit" value="Submit">
             </div>
         </form>
-        <div>
+		<div>
             <br>
             <a href="Associate_menu.php">Back to Associate Menu</a></br>
         </div>
@@ -92,13 +93,25 @@ require_once('../validate_session.php');
     
     
     <?php
-        if (isset($_POST['Submit'])){
-
+        if (isset($_POST['Submit']) || isset($_POST['Finalized'])){
+			$currentYear = date('Y');
+			$currentMonth = date('m');
+			$currentDay = date('d');
+		
+			$dateCurrent = date('Y-m-d');
+			
+			if(isset($_POST['Submit'])){
+				$status = '(Open)';
+			}
+			else if(isset($_POST['Finalized'])){
+				$status = '(Finalized)';
+			}
     
             /**
              * Grab information from the form submission and store values into variables.
              */
-            $customer = isset($_POST['customer']) ? $_POST['customer'] : " ";  
+            $customer = isset($_SESSION['customer_var']) ? $_SESSION['customer_var'] : " "; 
+			$associate = $_SESSION['user'];			
             $address = isset($_POST['address']) ? $_POST['address'] : " ";
             $email = isset($_POST['email']) ? $_POST['email'] : " ";
             $line_item = isset($_POST['line_item']) ? $_POST['line_item'] : " ";
@@ -108,8 +121,8 @@ require_once('../validate_session.php');
             
             //Insert into Quote table;
             
-            $queryQuote  = "INSERT INTO quote (customer, address, email, line_item, line_item_price, secret_note, amount)
-                        VALUES ('".$customer."', '".$address."', '".$email."', '".$line_item."', '".$line_item_price."', '".$secret_note."', '".$amount."');";
+            $queryQuote  = "INSERT INTO quote (event_date, customer, associate, address, email, line_item, line_item_price, secret_note, amount, status)
+                        VALUES ('".$dateCurrent."', '".$customer."', '".$associate."', '".$address."', '".$email."', '".$line_item."', '".$line_item_price."', '".$secret_note."', '".$amount."', '".$status."');";
 
             // The query sent to the DB can be printed by not commenting the following row
             //echo $queryAssociate;
@@ -118,10 +131,7 @@ require_once('../validate_session.php');
             } else {
                 echo "<br> The record was not created, the query: <br>" . $queryQuote . "  <br> Generated the error <br>" . $conn->error;
             }
-
-            // To redirect the page to the Associate menu right after the query is executed, use the following statement 
-            // header("Location: quote_menu.php");
-}
+		}
 ?>
 
 

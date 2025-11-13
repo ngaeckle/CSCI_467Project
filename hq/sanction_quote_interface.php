@@ -33,7 +33,7 @@ else {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>CSCI 467 Quote Update</title>
+    <title>CSCI 467 Quote Sanction</title>
 
     <!-- Importing Bootstrap CSS library https://getbootstrap.com/ -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
@@ -41,12 +41,12 @@ else {
 
 <body>
     <div style="margin-top: 20px" class="container">
-        <h1>Update Quote</h1>
+        <h1>Sanction Quote</h1>
         <!-- styling of the form for bootstrap https://getbootstrap.com/docs/4.5/components/forms/ -->
         <!-- Displaying a form with the information of the user so values can be modified 
              Note that the ID is not shown to be modified, only other attributes. -->
 
-        <form action="update_quote.php" method="post">
+        <form action="sanction_quote.php" method="post">
 			<input type="hidden" name="quote_id" id="quote_id" value="<?php echo $row['quote_id'] ?>">
 			<div class="form-group">
                 <label for="customer">Customer</label>
@@ -77,20 +77,12 @@ else {
                 <input class="form-control" type="text" id="amount" name="amount" value="<?php echo $row['amount'] ?>">
             </div>
             <div class="form-group">
-                <input class="btn btn-primary" name='Submit' type="submit" value="Update">
+                <input class="btn btn-primary" name='Submit' type="submit" value="Sanction Quote">
             </div>
         </form>
-		
-		<div class="hline-separator"></div>
-		<form action="finalize_quote.php" method="post">
-		<input type="hidden" name="quote_id" id="quote_id" value="<?php echo $row['quote_id'] ?>">
-		 <p>To finalize this quote and submit it to processing headquarters, click here:</p>
-		  <button type="finalize" name="finalize_button" onclick="alert('Quote finalized!')">Finalize Quote</button>
-        </form>
-		<div>
         <div>
             <br>
-            <a href="view_quote.php">Back to Quotes</a></br>
+            <a href="view_finalized_quote.php">Back to Finalized Quotes</a></br>
         </div>
 
         <!-- jQuery and JS bundle w/ Popper.js -->

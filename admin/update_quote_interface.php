@@ -80,17 +80,9 @@ else {
                 <input class="btn btn-primary" name='Submit' type="submit" value="Update">
             </div>
         </form>
-		
-		<div class="hline-separator"></div>
-		<form action="finalize_quote.php" method="post">
-		<input type="hidden" name="quote_id" id="quote_id" value="<?php echo $row['quote_id'] ?>">
-		 <p>To finalize this quote and submit it to processing headquarters, click here:</p>
-		  <button type="finalize" name="finalize_button" onclick="alert('Quote finalized!')">Finalize Quote</button>
-        </form>
-		<div>
         <div>
             <br>
-            <a href="view_quote.php">Back to Quotes</a></br>
+            <a href="view_quotes.php">Back to Quotes</a></br>
         </div>
 
         <!-- jQuery and JS bundle w/ Popper.js -->

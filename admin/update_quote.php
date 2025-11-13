@@ -33,7 +33,7 @@ if (isset($_POST['quote_id'])){
 
     if (mysqli_query($conn, $query)) {
         echo "Record updated successfully";
-        header("Location: view_quote.php");
+        header("Location: view_quotes.php");
       } else {
         echo "Error updating record: " . mysqli_error($conn);
       }
@@ -42,7 +42,7 @@ if (isset($_POST['quote_id'])){
 	   echo $query;
 	    if (mysqli_query($conn, $query)) {
         echo "Finalized!";
-			header("Location: view_quote.php");
+			header("Location: view_quotes.php");
       } else {
         echo "Error updating record: " . mysqli_error($conn);
       }

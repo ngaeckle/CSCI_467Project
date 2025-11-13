@@ -23,7 +23,7 @@ require_once('../validate_session.php');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>CSCI 467 Associate Menu</title>
+    <title>CSCI 467 Headquarters Menu</title>
 
     <!-- Bootstrap CSS library https://getbootstrap.com/ -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -44,7 +44,7 @@ require_once('../validate_session.php');
             font-size: 1.8rem;
             font-weight: 600;
             margin: 0;
-        }
+		}
         .logout-btn {
             background: rgba(255, 255, 255, 0.2);
             border: 2px solid rgba(255, 255, 255, 0.3);
@@ -83,15 +83,11 @@ require_once('../validate_session.php');
             <div class="row align-items-center">
                 <div class="col">
                     <h1 class="header-title">
-                        <i class="fas fa-user-tie mr-2"></i>Associate Dashboard
+                        <i class="fas fa-user-tie mr-2"></i>Headquarters
                     </h1>
+					
                 </div>
                 <div class="col-auto">
-                    <a href="logout.php" class="logout-btn">
-                        <i class="fas fa-sign-out-alt mr-1"></i>Logout
-                    </a>
-                </div>
-            </div>
         </div>
     </header>
 
@@ -100,9 +96,10 @@ require_once('../validate_session.php');
         <div class="container">
             <div class="content-area">
                 <!-- Content will be displayed here -->
-                <h3>Welcome to your Associate Dashboard</h3>
+                <h3>Welcome to Headquarters</h3>
                 <p class="text-muted">This area will contain your quotes and other content.</p>
-        <a href="view_quote.php">Create, View, Modify, and Delete Quotes</a><br>
+        <a href="view_finalized_quote.php">Sanction Quotes</a><br>
+		<a href="process_orders.php">Process Orders</a><br>
             </div>
         </div>
     </main>

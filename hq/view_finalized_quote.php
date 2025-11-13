@@ -30,15 +30,21 @@ require_once('../validate_session.php');
 </head>
 
 <body>
-    <?php $sql = "SELECT * FROM User";
+
+<header><b>List of finalized quotes:</b></header>
+
+    <?php $sql = "SELECT * FROM quote WHERE status='(Finalized)'";
+	$sql2 = "SELECT COUNT(*) AS numOfFinalized FROM quote WHERE status='(Finalized)'";
+	$result2 = $conn->query($sql2);
     if ($result = $conn->query($sql)) {
     ?>
         <table class="table" width=50%>
             <thead>
                 <td> ID</td>
-                <td> Username</td>
-                <td> Address </td>
-				<td> Commission </td>
+                <td> Date</td>
+                <td> Customer</td>
+                <td> Associate</td>
+				<td> Amount</td>
             </thead>
             <tbody>
                 <?php
@@ -47,10 +53,10 @@ require_once('../validate_session.php');
                     <tr>
                     <td><?php printf("%s", $row[0]); ?></td>
                         <td><?php printf("%s", $row[1]); ?></td>
+                        <td><?php printf("%s", $row[2]); ?></td>
                         <td><?php printf("%s", $row[3]); ?></td>
-						<td><?php printf("%s", $row[4]); ?></td>
-                        <td><a href="update_associate_interface.php?user_id=<?php echo $row[0] ?>">Update</a></td>
-                        <td><a href="delete_associate.php?user_id=<?php echo $row[0] ?>">Delete</a></td>
+						<td><?php printf("%s", $row[9]); ?></td>
+                        <td><a href="sanction_quote_interface.php?quote_id=<?php echo $row[0] ?>">Sanction</a></td>
                     </tr>
                 <?php
                 }
@@ -60,11 +66,22 @@ require_once('../validate_session.php');
     <?php
     }
     ?>
-    <!-- Link to return to student_menu-->
-    <a href="admin_menu.php">Back to Admin Menu</a><br>
+	<b>Number of finalized quotes:</b>
+	<?php
+	$row=$result2->fetch_assoc();
+	$num = $row["numOfFinalized"];
+	echo $num;
+	
+	?>
+    <!-- Link to return to Associate_menu-->
+    <br><a href="hq_menu.php">Back to HQ Menu</a><br>
     <!-- jQuery and JS bundle w/ Popper.js -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
+
+<?php
+mysqli_close($conn2);
+?>

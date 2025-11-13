@@ -160,6 +160,21 @@
         <!-- PhP code starts here -->
     <?php
      require_once('config.php');
+	 
+	 // Generate two random letters
+	$alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$randomLetter1 = $alphabet[random_int(0, strlen($alphabet) - 1)];
+	$randomLetter2 = $alphabet[random_int(0, strlen($alphabet) - 1)];
+
+	// Generate six random numbers
+	$randomNumber1 = random_int(0, 9);
+	$randomNumber2 = random_int(0, 9);
+	$randomNumber3 = random_int(0, 9);
+	$randomNumber4 = random_int(0, 9);
+	$randomNumber5 = random_int(0, 9);
+	$randomNumber6 = random_int(0, 9);
+	
+	$associate_id = "".$randomLetter1."".$randomLetter2."-".$randomNumber1. "" . $randomNumber2 . "" . $randomNumber3 . "" . $randomNumber4 ."" . $randomNumber5 ."". $randomNumber6 ."";
         
     if (isset($_POST['Submit'])){
     $username = isset($_POST['username']) ? $_POST['username'] : " ";
@@ -167,8 +182,8 @@
 	$address = isset($_POST['address']) ? $_POST['address'] : " ";
 	$commission = isset($_POST['commission']) ? $_POST['commission'] : " ";
 	
-    $queryUser  = "INSERT INTO User (Uusername, Upassword, address, commission)
-                VALUES ('".$username."', '".$password."', '".$address."', '".$commission."');";
+    $queryUser  = "INSERT INTO User (associate_id, Uusername, Upassword, address, commission)
+                VALUES ('".$associate_id."', '".$username."', '".$password."', '".$address."', '".$commission."');";
     if ($conn->query($queryUser) === TRUE) {
        echo "New user created successfully with the username: ".$username."</p>";
     } else {

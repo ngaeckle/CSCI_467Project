@@ -16,6 +16,9 @@ session_start();
 require_once('../config.php');
 require_once('../validate_session.php');
 
+echo var_dump($_POST[]);
+
+
 if (isset($_POST['user_id'])){
 
     $user_id = isset($_POST['user_id']) ? $_POST['user_id'] : " ";
