@@ -9,10 +9,10 @@
 -->
 <?php
 
-if (isset($_SESSION['logged_in']) || !empty($_SESSION['logged_in'])) {
-     // if the user is logged in, restrict access to the page
+if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in'])) {
+     // if the user is not logged in, restrict access to the page
      //header('Location: ../index.php'); 
-	 die("::Access restricted to users logged in::");
+	 die("::Access restricted to users not logged in::");
 } 
 
 ?>

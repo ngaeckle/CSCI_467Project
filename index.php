@@ -124,10 +124,51 @@ $total_associates = $associate_result ? $associate_result->fetch_assoc()['total'
     .login-btn:active {
       transform: translateY(-1px) scale(1.02);
     }
+    .fixed-login-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .fixed-login-btn a {
+      display: inline-block;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border: 2px solid #ffffff;
+      padding: 12px 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      color: #ffffff;
+      text-decoration: none;
+    }
+    .fixed-login-btn a:hover {
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+      background: linear-gradient(45deg, #5a6fd8, #6a4190);
+      color: #ffffff;
+      text-decoration: none;
+    }
   </style>
 </head>
 
 <body>
+  <!-- Fixed Login/Logout Button -->
+  <div class="fixed-login-btn">
+    <?php if (!isset($_SESSION['logged_in']) || empty($_SESSION['logged_in'])): ?>
+      <a href="login.php">
+        <i class="fas fa-sign-in-alt mr-1"></i>Login
+      </a>
+    <?php else: ?>
+      <?php 
+      $logout_path = (isset($_SESSION['user']) && $_SESSION['user'] == 'admin') ? 'admin/logout.php' : 'portal/logout.php';
+      ?>
+      <a href="<?php echo $logout_path; ?>">
+        <i class="fas fa-sign-out-alt mr-1"></i>Logout
+      </a>
+    <?php endif; ?>
+  </div>
   <!-- Hero Section -->
   <div class="hero-section">
     <div class="container">
