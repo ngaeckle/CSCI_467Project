@@ -147,3 +147,8 @@ require_once('../validate_session.php');
 </body>
 
 </html>
+
+<?php
+mysqli_close($conn2);
+mysqli_close($conn);
+?>

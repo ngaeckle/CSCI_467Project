@@ -2,8 +2,23 @@
 
 CREATE DATABASE IF NOT EXISTS csci_467;
 
-CREATE TABLE User(user_id INT AUTO_INCREMENT PRIMARY KEY, associate_id VARCHAR(255) UNIQUE, Uusername VARCHAR(30), Upassword VARCHAR(30), address VARCHAR(30), commission VARCHAR(30)); 
+CREATE TABLE User(user_id INT AUTO_INCREMENT PRIMARY KEY, associate_id VARCHAR(255) UNIQUE, Uusername VARCHAR(30), Upassword VARCHAR(30), address VARCHAR(30), commission DECIMAL(10,2)); 
 
-CREATE TABLE quote(quote_id INT AUTO_INCREMENT PRIMARY KEY, event_date date, customer VARCHAR (255), associate VARCHAR (255), address VARCHAR(255), email VARCHAR(25), line_item VARCHAR(25), line_item_price VARCHAR(25), secret_note VARCHAR(255), amount INT, status VARCHAR(255));
+CREATE TABLE quote(quote_id INT AUTO_INCREMENT PRIMARY KEY, event_date date, customer VARCHAR (255), associate VARCHAR (255), address VARCHAR(255), email VARCHAR(25), amount DECIMAL(10,2), status VARCHAR(255));
 
-CREATE TABLE orders(order_id VARCHAR(16) PRIMARY KEY, associate_id VARCHAR(255), quote_id INT, custid INT, amount VARCHAR(14), FOREIGN KEY (quote_id) REFERENCES quote(quote_id));
+CREATE TABLE orders(order_id VARCHAR(16) PRIMARY KEY, associate_id VARCHAR(255), quote_id INT, custid INT, amount DECIMAL(10,2), name VARCHAR(255), processDay DATE, commission VARCHAR(16), timeStamp VARCHAR(255), _id VARCHAR(255), FOREIGN KEY (quote_id) REFERENCES quote(quote_id) ON DELETE CASCADE);
+
+CREATE TABLE line_items(
+	line_itemID INT AUTO_INCREMENT PRIMARY KEY,
+	line_itemName VARCHAR(255),	
+	line_itemPrice DECIMAL(10,2),
+	quote_id INT,
+	FOREIGN KEY(quote_id) REFERENCES Quote(quote_id) ON DELETE CASCADE
+);
+
+CREATE TABLE secret_notes(
+	secret_noteID INT AUTO_INCREMENT PRIMARY KEY,
+	secret_noteSTRING VARCHAR(255),
+	quote_id INT,
+	FOREIGN KEY(quote_id) REFERENCES Quote(quote_id) ON DELETE CASCADE
+);	

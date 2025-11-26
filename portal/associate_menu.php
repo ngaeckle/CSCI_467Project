@@ -29,7 +29,7 @@ require_once('../validate_session.php');
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     
     <!-- Custom CSS for enhanced styling -->
-    <style>
+   <style>
         body {
             background-color: #f8f9fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -73,6 +73,26 @@ require_once('../validate_session.php');
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             min-height: 400px;
         }
+        .menu-link {
+            display: block;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .menu-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            color: white;
+            text-decoration: none;
+        }
+        .menu-link i {
+            margin-right: 10px;
+        }
     </style>
 </head>
 
@@ -102,7 +122,12 @@ require_once('../validate_session.php');
                 <!-- Content will be displayed here -->
                 <h3>Welcome to your Associate Dashboard</h3>
                 <p class="text-muted">This area will contain your quotes and other content.</p>
-        <a href="view_quote.php">Create, View, Modify, and Delete Quotes</a><br>
+				<a href="view_quote.php" class="menu-link">
+                    <i class="fas fa-file-invoice"></i>Create, View, Modify, and Delete Quotes
+                </a>
+				<a href="/CSCI_467Project-main/index.php" class="menu-link">
+                    <i class="fas fa-file-invoice"></i>Home
+                </a>
             </div>
         </div>
     </main>
@@ -119,3 +144,8 @@ require_once('../validate_session.php');
 </body>
 
 </html>
+
+<?php
+mysqli_close($conn2);
+mysqli_close($conn);
+?>

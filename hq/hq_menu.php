@@ -100,6 +100,7 @@ require_once('../validate_session.php');
                 <p class="text-muted">This area will contain your quotes and other content.</p>
         <a href="view_finalized_quote.php">Sanction Quotes</a><br>
 		<a href="process_orders.php">Process Orders</a><br>
+		<a href="../index.php">Home</a><br>
             </div>
         </div>
     </main>
@@ -116,3 +117,7 @@ require_once('../validate_session.php');
 </body>
 
 </html>
+<?php
+mysqli_close($conn2);
+mysqli_close($conn);
+?>

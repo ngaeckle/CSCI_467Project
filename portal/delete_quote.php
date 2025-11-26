@@ -32,3 +32,8 @@ if (isset($_GET['quote_id'])){
 }
 
 ?>
+
+<?php
+mysqli_close($conn2);
+mysqli_close($conn);
+?>

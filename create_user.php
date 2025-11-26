@@ -125,12 +125,6 @@
                 <input class="form-control" type="text" id="address" name="address" placeholder="Enter address">
               </div>
               <div class="form-group">
-                <label for="commission">
-                  <i class="fas fa-dollar-sign mr-1"></i>Commission
-                </label>
-                <input class="form-control" type="number" step="0.01" id="commission" name="commission" placeholder="Enter commission rate">
-              </div>
-              <div class="form-group">
                 <input class="btn btn-login text-white" name='Submit' type="submit" value="Create Account">
               </div>
             </form>
@@ -180,10 +174,9 @@
     $username = isset($_POST['username']) ? $_POST['username'] : " ";
     $password = isset($_POST['password']) ? $_POST['password'] : " ";
 	$address = isset($_POST['address']) ? $_POST['address'] : " ";
-	$commission = isset($_POST['commission']) ? $_POST['commission'] : " ";
 	
     $queryUser  = "INSERT INTO User (associate_id, Uusername, Upassword, address, commission)
-                VALUES ('".$associate_id."', '".$username."', '".$password."', '".$address."', '".$commission."');";
+                VALUES ('".$associate_id."', '".$username."', '".$password."', '".$address."', '0.00');";
     if ($conn->query($queryUser) === TRUE) {
        echo "New user created successfully with the username: ".$username."</p>";
     } else {
