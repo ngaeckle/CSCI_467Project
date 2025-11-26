@@ -78,3 +78,8 @@ else {
 </body>
 
 </html>
+
+<?php
+mysqli_close($conn2);
+mysqli_close($conn);
+?>

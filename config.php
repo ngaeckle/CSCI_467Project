@@ -1,14 +1,3 @@
-<!--
-/**
- * CSCI 467 Intro to Software Engineering
- * @author For NIU by David Jones
- * @version 1.0
- * Resources: https://getbootstrap.com/docs/4.5/components/alerts/  -- bootstrap examples
- *
- * MAKE SURE YOU HAVE CREATED THE TABLES provided in the CreateTablesFirst.txt file before running this files.
- */
--->
-
 <?php
 
 $host = "localhost";

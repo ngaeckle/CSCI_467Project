@@ -2,6 +2,16 @@
 
 session_start();
 require_once("config.php");
+if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true){
+	if($_SESSION['user'] == 'admin'){
+		header("Location: admin/admin_menu.php");
+	}
+	else{
+		header("Location: portal/associate_menu.php");
+	}
+	exit();
+}
+
 $_SESSION['logged_in'] = false;
 
 if (!empty($_POST)) {

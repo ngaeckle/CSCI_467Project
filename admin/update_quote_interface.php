@@ -60,18 +60,42 @@ else {
                 <label for="email">Email</label>
                 <input class="form-control" type="text" id="email" name="email" value="<?php echo $row['email'] ?>">
             </div>
-	        <div class="form-group">
-                <label for="line_item">Line Item</label>
-                <input class="form-control" type="text" id="line_item" name="line_item" value="<?php echo $row['line_item'] ?>">
-            </div>
-			<div class="form-group">
-                <label for="line_item_price">Line Item Price</label>
-                <input class="form-control" type="text" id="line_item_price" name="line_item_price" value="<?php echo $row['line_item_price'] ?>">
-            </div>
-			<div class="form-group">
-                <label for="secret_note">Secret Note</label>
-                <input class="form-control" type="text" id="secret_note" name="secret_note" value="<?php echo $row['secret_note'] ?>">
-            </div>
+						<label for="Line Items">Line Items:</label>
+			<br>
+			<?php 
+			$sql = "SELECT q.quote_id AS quote_id, l.line_itemName AS name, l.line_itemID AS item_id, l.line_itemPrice AS price FROM Quote q LEFT JOIN line_items l ON q.quote_id = l.quote_id WHERE q.quote_id = $quoteid ORDER by l.line_itemName, l.line_itemPrice";
+			
+			$result = $conn->query($sql);
+			$price = 0;
+			while($data = $result->fetch_assoc()){
+				echo "<input type=text placeholder= " . '"' . $data["name"] . '"' . " disabled>";
+				echo "<input type=text placeholder= " . '"' . $data["price"] . '"' . " disabled>";
+				if($data["item_id"] != ''){
+					echo "<a href=delete_line_item.php?item_id=". $data["item_id"] . ">Delete</a></td>";
+				}
+				echo "<br>\n";
+					$price = $data["price"] + $price;
+				}
+				$amount = $price;
+			$sql = "UPDATE quote SET amount = '$amount' WHERE quote_id = $quoteid";
+			$conn->query($sql);
+			?>
+			
+			<label for="Line Items">Secret Notes:</label>
+			<br>
+			
+			<?php 
+			$sql = "SELECT q.quote_id AS id, n.secret_noteID AS note_id, n.secret_noteSTRING AS note FROM quote q LEFT JOIN secret_notes n ON q.quote_id = n.quote_id WHERE q.quote_id = $quoteid ORDER by n.secret_noteSTRING";
+			
+			$result = $conn->query($sql);
+			while($data = $result->fetch_assoc()){
+				echo "<input type=text placeholder= " . '"' . $data["note"] . '"' . " disabled>";
+				if($data["note_id"] != ''){
+					echo "<a href=delete_note.php?note_id=". $data["note_id"] . ">Delete</a></td>";
+				}
+				echo "<br>\n";
+				}
+			?>
 			<div class="form-group">
                 <label for="amount">Amount</label>
                 <input class="form-control" type="text" id="amount" name="amount" value="<?php echo $row['amount'] ?>">
@@ -94,3 +118,8 @@ else {
 
 
 </html>
+
+<?php
+mysqli_close($conn2);
+mysqli_close($conn);
+?>

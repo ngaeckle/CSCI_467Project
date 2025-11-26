@@ -22,7 +22,7 @@ if (isset($_GET['quote_id'])){
 
     if ($conn->query($query) === TRUE) {
         echo "Quote deleted successfuly";
-        header("Location: view_quote.php");
+        header("Location: view_quotes.php");
      } else {
          echo "Error: " . $query . "<br>" . $conn->error;
      }
@@ -31,4 +31,9 @@ if (isset($_GET['quote_id'])){
     header("Location: view_quotes.php");
 }
 
+?>
+
+<?php
+mysqli_close($conn2);
+mysqli_close($conn);
 ?>
