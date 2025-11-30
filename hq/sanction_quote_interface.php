@@ -144,8 +144,6 @@ else {
 				echo "<br>\n";
 					$price = $data["price"] + $price;
 				}
-				$amount = $price;
-			$sql = "UPDATE quote SET amount = '$amount' WHERE quote_id = $quoteid";
 			$conn->query($sql);
 			?>
 			

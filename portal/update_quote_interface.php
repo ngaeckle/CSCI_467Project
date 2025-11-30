@@ -190,7 +190,7 @@ else {
 		<form action="finalize_quote.php" method="post">
 		<input type="hidden" name="quote_id" id="quote_id" value="<?php echo $row['quote_id'] ?>">
 		 <p>To finalize this quote and submit it to processing headquarters, click here:</p>
-		  <button type="finalize" name="finalize_button" onclick="alert('Quote finalized!')">Finalize Quote</button>
+		  <button type="finalize" name="finalize_button">Finalize Quote</button>
         </form>
 		<div>
         <div>

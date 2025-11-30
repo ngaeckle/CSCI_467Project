@@ -52,7 +52,7 @@ else {
             </div>
             <div class="form-group">
                 <label for="new_password">New Password</label>
-                <input class="form-control" type="text" id="new_pass" name="new_pass">
+                <input class="form-control" type="password	" id="new_pass" name="new_pass">
             </div>
             <div class="form-group">
                 <label for="last_name">Address</label>
