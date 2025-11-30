@@ -3,11 +3,11 @@ session_start();
 require_once("config.php");
 
 // Placeholder values for demonstration
-$total_quotes = 247;  // Replace with actual database query when ready
-$total_associates = 18;  // Replace with actual database query when ready
+//$total_quotes = 247;  // Replace with actual database query when ready
+//$total_associates = 18;  // Replace with actual database query when ready
 
 // Uncomment the lines below to use actual database counts:
-/*
+
 // Get total count of quotes
 $quote_query = "SELECT COUNT(*) as total FROM quote";
 $quote_result = $conn->query($quote_query);
@@ -17,7 +17,7 @@ $total_quotes = $quote_result ? $quote_result->fetch_assoc()['total'] : 0;
 $associate_query = "SELECT COUNT(*) as total FROM User WHERE Uusername != 'admin'";
 $associate_result = $conn->query($associate_query);
 $total_associates = $associate_result ? $associate_result->fetch_assoc()['total'] : 0;
-*/
+
 ?>
 
 <!--
@@ -266,11 +266,11 @@ $total_associates = $associate_result ? $associate_result->fetch_assoc()['total'
 <?php
 
 // Placeholder values for demonstration
-$total_quotes = 247;  // Replace with actual database query when ready
-$total_associates = 18;  // Replace with actual database query when ready
+//$total_quotes = 247;  // Replace with actual database query when ready
+//$total_associates = 18;  // Replace with actual database query when ready
 
 // Uncomment the lines below to use actual database counts:
-/*
+
 // Get total count of quotes
 $quote_query = "SELECT COUNT(*) as total FROM quote";
 $quote_result = $conn->query($quote_query);
@@ -280,5 +280,5 @@ $total_quotes = $quote_result ? $quote_result->fetch_assoc()['total'] : 0;
 $associate_query = "SELECT COUNT(*) as total FROM User WHERE Uusername != 'admin'";
 $associate_result = $conn->query($associate_query);
 $total_associates = $associate_result ? $associate_result->fetch_assoc()['total'] : 0;
-*/
+
 ?>

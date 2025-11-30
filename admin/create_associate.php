@@ -10,6 +10,15 @@
 
 <!doctype html>
 <html lang="en">
+<?php
+/*
+* Reference for tables: https://getbootstrap.com/docs/4.5/content/tables/
+*/
+
+session_start();
+require_once('../config.php');
+require_once('../validate_session.php');
+?>
 
 <head>
     <meta charset="utf-8">
@@ -101,7 +110,7 @@
             </div>
             <div class="form-group">
                 <label for="new_password">New Password</label>
-                <input class="form-control" type="text" id="new_password" name="new_password">
+                <input class="form-control" type="password" id="new_password" name="new_password">
             </div>
             <div class="form-group">
                 <label for="address">Address</label>
@@ -127,31 +136,41 @@
     
     
     <?php
-        session_start();
-        require_once('../config.php');
-        require_once('../validate_session.php');
-        if (isset($_POST['Submit'])){
+		
+		 // Generate two random letters
+		$alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$randomLetter1 = $alphabet[random_int(0, strlen($alphabet) - 1)];
+		$randomLetter2 = $alphabet[random_int(0, strlen($alphabet) - 1)];
 
-    
+		// Generate six random numbers
+		$randomNumber1 = random_int(0, 9);
+		$randomNumber2 = random_int(0, 9);
+		$randomNumber3 = random_int(0, 9);
+		$randomNumber4 = random_int(0, 9);
+		$randomNumber5 = random_int(0, 9);
+		$randomNumber6 = random_int(0, 9);
+		
+		$associate_id = "".$randomLetter1."".$randomLetter2."-".$randomNumber1. "" . $randomNumber2 . "" . $randomNumber3 . "" . $randomNumber4 ."" .$randomNumber5 ."". $randomNumber6 ."";
+		
+        if (isset($_POST['Submit'])){
             /**
              * Grab information from the form submission and store values into variables.
              */ 
             $username = isset($_POST['username']) ? $_POST['username'] : " ";
             $new_pass = isset($_POST['new_password']) ? $_POST['new_password'] : " ";
             $address = isset($_POST['address']) ? $_POST['address'] : " ";
-            $commission = isset($_POST['commission']) ? $_POST['commission'] : " ";
 			
             //Insert into Student table;
             
-            $query  = "INSERT INTO User (Uusername, Upassword, address, commission)
-                        VALUES ('".$username."', '".$new_pass."', '".$address."', '".$commission."');";
+			$query  = "INSERT INTO User (associate_id, Uusername, Upassword, address, commission)
+                VALUES ('".$associate_id."', '".$username."', '".$new_pass."', '".$address."', 0.00)";
 
             // The query sent to the DB can be printed by not commenting the following row
             //echo $queryStudent;
             if ($conn->query($query) === TRUE) {
-            echo "<br> New record created successfully for user id ".$sid;
+            echo "<br> New record created successfully for user";
             } else {
-                echo "<br> The record was not created, the query: <br>" . $query . "  <br> Generated the error <br>" . $conn->error;
+                echo "<br> The record was not created, the query: <br>" . $query . "  <br> Generated the error <br>" . $conn->error;	
             }
 			header("Location: admin_menu.php");
 }

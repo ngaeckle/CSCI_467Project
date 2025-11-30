@@ -17,15 +17,27 @@ require_once('../config.php');
 require_once('../validate_session.php');
 
 if (isset($_POST['quote_id'])){
+	
+	
 
     $quote_id = isset($_POST['quote_id']) ? $_POST['quote_id'] : " ";
 
     $query = "UPDATE quote SET status='(Finalized)' WHERE quote_id = $quote_id"; 
-    echo $query;
-
+	
+	$query_zero = "SELECT amount FROM quote WHERE quote_id = $quote_id";
+	
+	$result = $conn->query($query_zero);
+	
+	$row = $result->fetch_row();
+	
+	if($row[0] == NULL or $row[0] == 0){
+		echo "<script type='text/javascript'>alert('Quote not finalized: Amount is either zero or NULL');
+window.location.href='view_quote.php';</script>";
+		die();
+	}
     if (mysqli_query($conn, $query)) {
-        echo "Record updated successfully";
-        header("Location: view_quote.php");
+		echo "<script type='text/javascript'>alert('Quote finalized!');
+		window.location.href='view_quote.php';</script>";
       } else {
         echo "Error updating record: " . mysqli_error($conn);
       }
